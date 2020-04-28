@@ -111,7 +111,18 @@
     //
     // test if a specific column on this board contains a conflict
     hasColConflictAt: function(colIndex) {
-      return false; // fixme
+      var counter = 0;
+      console.log('colconflict', n);
+      for (var i = 0; i <= TODO; i++) {
+        var row = this.get(i);
+        if (row[colIndex] === 1) {
+          counter++;
+        }
+        if (counter >= 2) {
+          return true;
+        }
+      }
+      return false;
     },
 
     // test if any columns on this board contain conflicts
