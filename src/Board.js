@@ -62,7 +62,7 @@
     },
 
 
-/*
+    /*
          _             _     _
      ___| |_ __ _ _ __| |_  | |__   ___ _ __ ___ _
     / __| __/ _` | '__| __| | '_ \ / _ \ '__/ _ (_)
@@ -81,7 +81,7 @@
     hasRowConflictAt: function(rowIndex) {
       debugger;
       var row = this.get(rowIndex);
-      console.log(row);
+      console.log('line 84', row);
       var counter = 0;
       for (var i = 0; i < row.length; i++) {
         if (row[i] === 1) {
@@ -96,7 +96,12 @@
 
     // test if any rows on this board contain conflicts
     hasAnyRowConflicts: function() {
-      return false; // fixme
+      for (var i = 0; i < n - 1; i++) {
+        if (hasRowConflictAt(i)) {
+          return true;
+        }
+      }
+      return false;
     },
 
 
