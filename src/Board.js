@@ -140,8 +140,21 @@
     // --------------------------------------------------------------
     //
     // test if a specific major diagonal on this board contains a conflict
+    //start at row 0 always
     hasMajorDiagonalConflictAt: function(majorDiagonalColumnIndexAtFirstRow) {
-      return false; // fixme
+      //create counter
+      //get matrix
+      //create row index variable and set to 0
+      //create column index set to parameter
+      //if column index is < 0
+        //set row index to abs of column index
+        //set column index to 0
+      //while row index < matrix.length and column index < matrix.length
+        //if matrix at (row, column) === 1
+          //counter ++
+        //row index ++
+        //column ++
+      return counter > 1;
     },
 
     // test if any major diagonals on this board contain conflicts
