@@ -201,7 +201,31 @@
     //
     // test if a specific minor diagonal on this board contains a conflict
     hasMinorDiagonalConflictAt: function(minorDiagonalColumnIndexAtFirstRow) {
-      return false; // fixme
+      // create counter variable
+      var counter = 0;
+      // get matrix variable
+      var matrix = this.rows();
+      // create rowIndex 0
+      var rowIndex = 0;
+      // create colIndex minorDiagonalColumnIndexAtFirstRow
+      var columnIndex = minorDiagonalColumnIndexAtFirstRow;
+      // create loop through matrix
+      for (var i = 0; i < matrix.length; i++) {
+        // check if there's a piece at loc (equals 1)
+        // if matrix[rowIndex][columnIndex] === 1
+        if (matrix[rowIndex][columnIndex] === 1) {
+          // if yes increase counter
+          counter++;
+          // if counter > 1 return true
+          if (counter > 1) {
+            return true;
+          }
+        }
+        // rowIndex++, columnIndex--
+        rowIndex++;
+        columnIndex--;
+      }
+      return false;
     },
 
     // test if any minor diagonals on this board contain conflicts
