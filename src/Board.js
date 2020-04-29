@@ -143,23 +143,55 @@
     //start at row 0 always
     hasMajorDiagonalConflictAt: function(majorDiagonalColumnIndexAtFirstRow) {
       //create counter
+      var counter = 0;
       //get matrix
+      var matrix = this.rows();
       //create row index variable and set to 0
+      var rowIndex = 0;
       //create column index set to parameter
+      var columnIndex = majorDiagonalColumnIndexAtFirstRow;
       //if column index is < 0
+      if (columnIndex < 0) {
         //set row index to abs of column index
+        rowIndex = Math.abs(majorDiagonalColumnIndexAtFirstRow);
         //set column index to 0
+        columnIndex = 0;
+
+      }
       //while row index < matrix.length and column index < matrix.length
+      while (rowIndex < matrix.length && columnIndex < matrix.length) {
         //if matrix at (row, column) === 1
+        if (matrix[rowIndex][columnIndex] === 1) {  // matrix[0][0]  //TODO TAMMY look at this more
           //counter ++
+          counter++;
+        }
         //row index ++
+        rowIndex++;
         //column ++
+        columnIndex++;
+      }
       return counter > 1;
     },
 
     // test if any major diagonals on this board contain conflicts
     hasAnyMajorDiagonalConflicts: function() {
-      return false; // fixme
+      // get matrix, store it in a variable
+      var matrix = this.rows();
+      // check columns for conflict
+      for (let i = 0; i < matrix.length - 2; i++) {
+        // if conflict true
+        if (this.hasMajorDiagonalConflictAt(i)) {
+          return true;
+        }
+      }
+      // check rows for conflict
+      for (let i = 0; i < matrix.length - 2; i++) {
+        // if conflict true
+        if (this.hasMajorDiagonalConflictAt(-i)) {
+          return true;
+        }
+      }
+      return false;
     },
 
 
