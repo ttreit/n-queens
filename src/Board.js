@@ -178,19 +178,19 @@
       // get matrix, store it in a variable
       var matrix = this.rows();
       // check columns for conflict
-      for (let i = 0; i < matrix.length - 2; i++) {
+      for (let i = -(matrix.length); i < matrix.length; i++) {
         // if conflict true
         if (this.hasMajorDiagonalConflictAt(i)) {
           return true;
         }
       }
-      // check rows for conflict
-      for (let i = 0; i < matrix.length - 2; i++) {
-        // if conflict true
-        if (this.hasMajorDiagonalConflictAt(-i)) {
-          return true;
-        }
-      }
+      // // check rows for conflict
+      // for (let i = 0; i < matrix.length - 2; i++) {
+      //   // if conflict true
+      //   if (this.hasMajorDiagonalConflictAt(-i)) {
+      //     return true;
+      //   }
+      // }
       return false;
     },
 
@@ -230,7 +230,19 @@
 
     // test if any minor diagonals on this board contain conflicts
     hasAnyMinorDiagonalConflicts: function() {
-      return false; // fixme
+      //get matrix variable
+      var matrix = this.rows();
+      // for loop that goes through all the rows
+      for (var i = 0; i < (2 * matrix.length); i++) {
+        if (this.hasMinorDiagonalConflictAt(i)) {
+          return true;
+        }
+
+      }
+
+
+      //return false
+      return false;
     }
 
     /*--------------------  End of Helper Functions  ---------------------*/
