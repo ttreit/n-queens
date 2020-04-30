@@ -21,9 +21,9 @@ window.findNRooksSolution = function(n) {
   //create matrix variable
   var matrix = board.rows();
   //create for loop, looping through rows i
-  for(var i = 0; i < n; i++) {
+  for (var i = 0; i < n; i++) {
     //create for loop, looping through columns
-    for(var j = 0; j < n; j++) {
+    for (var j = 0; j < n; j++) {
       //toggle to i, j
       board.togglePiece(i, j);
       //check if conflicts
@@ -42,7 +42,11 @@ window.findNRooksSolution = function(n) {
 
 // return the number of nxn chessboards that exist, with n rooks placed such that none of them can attack each other
 window.countNRooksSolutions = function(n) {
-  var solutionCount = undefined; //fixme
+
+  if (n === 0) {
+    return 1;
+  }
+  var solutionCount = n * countNRooksSolutions(n-1);
 
   console.log('Number of solutions for ' + n + ' rooks:', solutionCount);
   return solutionCount;
