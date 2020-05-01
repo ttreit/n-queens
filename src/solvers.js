@@ -54,6 +54,7 @@ window.countNRooksSolutions = function(n) {
 
 // return a matrix (an array of arrays) representing a single nxn chessboard, with n queens placed such that none of them can attack each other
 window.findNQueensSolution = function(n) {
+  //debugger;
   var result = [];
   var solutionChecker = function() { //should we pass the matrix in?
     var matrixCounter = 0;
@@ -71,36 +72,38 @@ window.findNQueensSolution = function(n) {
   };
 
   /////START WITH ANCHOR POINT
-  var startI = 0;
-  //check solution here maybe????
-  for (var startJ = 0; startJ < n; startJ ++) {
-    //create a new board
-    var board = new Board({'n': n});
-    //create a new matrix
-    var matrix = board.rows();
-    board.togglePiece(startI, startJ);
-    /////LOOP THROUGH ALL POSSIBILITIES WITH CURRENT ANCHOR
-    //loop through the rows
-    for (var i = 0; i < n; i++) {
-      //loop through columns
-      for (var j = 0; j < n; j++) {
-        //check for anchor piece
-        if (startI === i && startJ === j) {
-          continue;
-        }
-        //toggle piece
-        board.togglePiece(i, j);
-        //check for conflicts
-        if (board.hasAnyQueensConflicts()) {
+  for (var startI = 0; startI < n; startI++) {
+    for (var startJ = 0; startJ < n; startJ ++) {
+      //create a new board
+      //if (n === 6) { debugger; }
+      var board = new Board({'n': n});
+      //create a new matrix
+      var matrix = board.rows();
+      board.togglePiece(startI, startJ);
+      /////LOOP THROUGH ALL POSSIBILITIES WITH CURRENT ANCHOR
+      //loop through the rows
+      for (var i = 0; i < n; i++) {
+        //loop through columns
+        for (var j = 0; j < n; j++) {
+          //check for anchor piece
+          if (startI === i && startJ === j) {
+            continue;
+          }
+          //toggle piece
           board.togglePiece(i, j);
-        }
-        if (i === n - 1 && j === n - 1 ) {
-          if (n === 6) { debugger; }
-          console.log('last internal iteration with current Anchor Point');
-          console.log('solution checker', solutionChecker());
-          if (solutionChecker()) {
-            result.push(matrix);
-            console.log('result', result);
+          //check for conflicts
+          if (board.hasAnyQueensConflicts()) {
+            board.togglePiece(i, j);
+          }
+          if (i === n - 1 && j === n - 1 ) {
+            console.log('last internal iteration with current Anchor Point');
+            console.log('solution checker', solutionChecker());
+            if (solutionChecker()) {
+              //result.push(matrix);
+              console.log('result', result);
+              console.log('return matrix', matrix);
+              return matrix;
+            }
           }
         }
       }
@@ -109,7 +112,7 @@ window.findNQueensSolution = function(n) {
 
 
 
-  var solution = result[0];
+  var solution = matrix;
 
   console.log('Single solution for ' + n + ' queens:', JSON.stringify(solution));
   return solution;
