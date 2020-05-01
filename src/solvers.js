@@ -54,6 +54,7 @@ window.countNRooksSolutions = function(n) {
 
 // return a matrix (an array of arrays) representing a single nxn chessboard, with n queens placed such that none of them can attack each other
 window.findNQueensSolution = function(n) {
+  var result = [];
   var solutionChecker = function() {
     var matrixCounter = 0;
     //if valid solution, return solution
@@ -95,18 +96,19 @@ window.findNQueensSolution = function(n) {
         if (board.hasAnyQueensConflicts()) {
           board.togglePiece(i, j);
         }
-        if (i === n - 1 && j === n - 1) {
+        if (i === n - 1 && j === n - 1 ) {
           debugger;
           console.log('last internal iteration with current Anchor Point');
-
+          console.log('solution checker', solutionChecker());
+          if (solutionChecker()) {
+            result.push(matrix);
+            console.log('result', result);
+          }
         }
       }
-    }  //end of internal for loops
-  } //end of startJ loop
-  //DO WE HAVE A SOLUTION?
-  console.log('matrix after internal loop', matrix);
-  //check for solution
-  //if solution is true break StartI loop
+    }
+  }
+
 
 
   var solution = matrix;
