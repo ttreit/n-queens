@@ -127,7 +127,7 @@
       return false; // fixme
     },
 
-//Time Complexity O(n)
+    //Time Complexity O(n)
 
     // test if any columns on this board contain conflicts
     hasAnyColConflicts: function() {

@@ -84,7 +84,7 @@ window.findNQueensSolution = function(n) {
       return false;
     }
   };
-//Time complexity for solution Tracker - O(n)
+  //Time complexity for solution Tracker - O(n)
 
   /////START WITH ANCHOR POINT
   for (var startI = 0; startI < n; startI++) {
