@@ -54,7 +54,6 @@ window.countNRooksSolutions = function(n) {
 
 // return a matrix (an array of arrays) representing a single nxn chessboard, with n queens placed such that none of them can attack each other
 window.findNQueensSolution = function(n) {
-  //debugger;
   var mx = new Board({'n': n});
   var result = [];
   if (n === 0) {
@@ -85,7 +84,6 @@ window.findNQueensSolution = function(n) {
   for (var startI = 0; startI < n; startI++) {
     for (var startJ = 0; startJ < n; startJ ++) {
       //create a new board
-      //if (n === 6) { debugger; }
       var board = new Board({'n': n});
       //create a new matrix
       var matrix = board.rows();
@@ -109,7 +107,7 @@ window.findNQueensSolution = function(n) {
             console.log('last internal iteration with current Anchor Point');
             console.log('solution checker', solutionChecker());
             if (solutionChecker()) {
-              //result.push(matrix);
+              result.push(matrix);
               console.log('result', result);
               console.log('return matrix', matrix);
               return matrix;
@@ -131,8 +129,33 @@ window.findNQueensSolution = function(n) {
 
 // return the number of nxn chessboards that exist, with n queens placed such that none of them can attack each other
 window.countNQueensSolutions = function(n) {
-  var solutionCount = undefined; //fixme
-
-  console.log('Number of solutions for ' + n + ' queens:', solutionCount);
+  var solutionCount = 0;
+  // make board
+  var board = new Board({'n': n});
+  //make matrix
+  var matrix = board.rows();
+  //helper function
+  var recurse = function (i) {
+    //base case if i = n (last row)
+    if (i === n) {
+      //increase solution count
+      return solutionCount++;
+    }
+    //go through each column with a for loop
+    for (var j = 0; j < n; j++) {
+      //toggle first piece
+      board.togglePiece(i, j);
+      // if board has conflict toggle it back
+      if (board.hasAnyQueensConflicts()) {
+        board.togglePiece(i, j);
+      } else {
+        // if no conflict recurse
+        //increase depth by 1
+        recurse(i + 1);
+        board.togglePiece(i, j);
+      }
+    }
+  };
+  recurse(0);
   return solutionCount;
 };
