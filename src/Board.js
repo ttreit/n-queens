@@ -92,6 +92,8 @@
       return false;
     },
 
+    //Time Complexity O(n)
+
     // test if any rows on this board contain conflicts
     hasAnyRowConflicts: function() {
       var matrix = this.rows(); // [[0,0,0,0],[0,1,0,0],[0,0,0,0],[0,0,0,0]]
@@ -102,6 +104,8 @@
       }
       return false; // fixme
     },
+
+    //Time Complexity O(n^2)
 
 
 
@@ -123,6 +127,8 @@
       return false; // fixme
     },
 
+//Time Complexity O(n)
+
     // test if any columns on this board contain conflicts
     hasAnyColConflicts: function() {
       var matrix = this.rows();
@@ -134,6 +140,7 @@
       return false;
     },
 
+    // Time Complexity O(n^2)
 
 
     // Major Diagonals - go from top-left to bottom-right
@@ -156,12 +163,11 @@
         rowIndex = Math.abs(majorDiagonalColumnIndexAtFirstRow);
         //set column index to 0
         columnIndex = 0;
-
       }
       //while row index < matrix.length and column index < matrix.length
       while (rowIndex < matrix.length && columnIndex < matrix.length) {
         //if matrix at (row, column) === 1
-        if (matrix[rowIndex][columnIndex] === 1) {  // matrix[0][0]  //TODO TAMMY look at this more
+        if (matrix[rowIndex][columnIndex] === 1) { // matrix[0][0]  //TODO TAMMY look at this more
           //counter ++
           counter++;
         }
@@ -172,6 +178,9 @@
       }
       return counter > 1;
     },
+
+    //Time Complexity: O(n)
+
 
     // test if any major diagonals on this board contain conflicts
     hasAnyMajorDiagonalConflicts: function() {
@@ -193,7 +202,7 @@
       // }
       return false;
     },
-
+    //Time Complexity O(n^2)
 
 
     // Minor Diagonals - go from top-right to bottom-left
@@ -228,6 +237,8 @@
       return false;
     },
 
+    //Time Complexity: O(n)
+
     // test if any minor diagonals on this board contain conflicts
     hasAnyMinorDiagonalConflicts: function() {
       //get matrix variable
@@ -237,13 +248,12 @@
         if (this.hasMinorDiagonalConflictAt(i)) {
           return true;
         }
-
       }
-
-
       //return false
       return false;
     }
+    //Time Complexity: O(n^2)
+
 
     /*--------------------  End of Helper Functions  ---------------------*/
 

@@ -40,17 +40,22 @@ window.findNRooksSolution = function(n) {
   return solution;
 };
 
+//Time Complexity: Polynomial (we aren't sure what the exponent is...)
+
+
 // return the number of nxn chessboards that exist, with n rooks placed such that none of them can attack each other
 window.countNRooksSolutions = function(n) {
 
   if (n === 0) {
     return 1;
   }
-  var solutionCount = n * countNRooksSolutions(n-1);
+  var solutionCount = n * countNRooksSolutions(n - 1);
 
   console.log('Number of solutions for ' + n + ' rooks:', solutionCount);
   return solutionCount;
 };
+
+//Time complexity: linear
 
 // return a matrix (an array of arrays) representing a single nxn chessboard, with n queens placed such that none of them can attack each other
 window.findNQueensSolution = function(n) {
@@ -79,6 +84,7 @@ window.findNQueensSolution = function(n) {
       return false;
     }
   };
+//Time complexity for solution Tracker - O(n)
 
   /////START WITH ANCHOR POINT
   for (var startI = 0; startI < n; startI++) {
@@ -104,12 +110,8 @@ window.findNQueensSolution = function(n) {
             board.togglePiece(i, j);
           }
           if (i === n - 1 && j === n - 1 ) {
-            console.log('last internal iteration with current Anchor Point');
-            console.log('solution checker', solutionChecker());
             if (solutionChecker()) {
               result.push(matrix);
-              console.log('result', result);
-              console.log('return matrix', matrix);
               return matrix;
             }
           }
@@ -123,7 +125,7 @@ window.findNQueensSolution = function(n) {
   console.log('Single solution for ' + n + ' queens:', JSON.stringify(solution));
   return solution;
 };
-
+//Time Complexity - BAD probably polynomial of some flavor. ¯\_(ツ)_/¯
 
 
 
@@ -159,3 +161,5 @@ window.countNQueensSolutions = function(n) {
   recurse(0);
   return solutionCount;
 };
+
+//Time complexity: ¯\_(ツ)_/¯  (will get office hours)
